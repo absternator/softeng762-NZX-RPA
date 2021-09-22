@@ -1,7 +1,7 @@
 {
   "name": "softeng762-RPA",
   "description": "This is a project for SOFTENG762 RPA. The project entiails extracting infromation about companies on the NZX stock exchange.",
-  "main": "Main.xaml",
+  "main": "extracting_from_NZX.xaml",
   "dependencies": {
     "UiPath.Excel.Activities": "[2.9.5]",
     "UiPath.Mail.Activities": "[1.9.5]",
@@ -16,6 +16,7 @@
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
+    "isAttended": false,
     "requiresUserInteraction": true,
     "supportsPersistence": false,
     "excludedLoggedData": [
@@ -24,7 +25,8 @@
     ],
     "executionType": "Workflow",
     "readyForPiP": false,
-    "startsInPiP": false
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": false
   },
   "designOptions": {
     "projectProfile": "Developement",
@@ -46,9 +48,16 @@
       "uniqueId": "96690b83-d9f3-4337-918b-c66ea35a9683",
       "input": [],
       "output": []
+    },
+    {
+      "filePath": "extracting_from_NZX.xaml",
+      "uniqueId": "1e24ac91-79ec-46dd-ae43-f67c2cf60072",
+      "input": [],
+      "output": []
     }
   ],
   "isTemplate": false,
   "templateProjectData": {},
-  "publishData": {}
+  "publishData": {},
+  "targetFramework": "Legacy"
 }
