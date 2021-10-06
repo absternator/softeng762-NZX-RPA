@@ -2499,7 +2499,7 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.1/win7-x86": {
+    ".NETFramework,Version=v4.6.1/win10-x64": {
       "AForge/2.2.5": {
         "type": "package",
         "compile": {
@@ -9821,15 +9821,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Charlie\\.nuget\\packages\\": {}
+    "C:\\Users\\jack\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "softeng762-RPA",
       "projectName": "softeng762-RPA",
-      "projectPath": "C:\\Users\\Charlie\\Documents\\GitTings\\softeng762-NZX-RPA\\.local",
-      "packagesPath": "C:\\Users\\Charlie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Charlie\\Documents\\GitTings\\softeng762-NZX-RPA\\.local"
+      "projectPath": "C:\\Users\\jack\\Desktop\\folders\\uni\\Year 4\\Sem 2\\SOFTENG 762\\group assignment\\rpa bot\\.local",
+      "packagesPath": "C:\\Users\\jack\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jack\\Desktop\\folders\\uni\\Year 4\\Sem 2\\SOFTENG 762\\group assignment\\rpa bot\\.local"
     },
     "frameworks": {
       "net461": {
@@ -9860,7 +9860,12 @@
             "version": "[1.6.4, 1.6.4]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\Charlie\\AppData\\Local\\UiPath\\app-21.4.4\\runtime.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\jack\\AppData\\Local\\Programs\\UiPath\\Studio\\runtime.json"
+      }
+    },
+    "runtimes": {
+      "win10-x64": {
+        "#import": []
       }
     }
   }
