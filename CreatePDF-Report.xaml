@@ -1,0 +1,695 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CreatePDFFile" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="943.333333333333,10306.6666666667" sap2010:WorkflowViewState.IdRef="CreatePDFFile_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/word" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.Word.Activities</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>DocumentFormat.OpenXml.Drawing.Charts</x:String>
+      <x:String>DocumentFormat.OpenXml</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>DocumentFormat.OpenXml</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Create PDF Report" sap:VirtualizedContainerService.HintSize="953.333333333333,10242" sap2010:WorkflowViewState.IdRef="Sequence_32">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="CompanyDetails" />
+      <Variable x:TypeArguments="x:String" Name="FinalReport" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="911.333333333333,167.333333333333" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_3" InstanceCachePeriod="3000" WorkbookPath="nzx_scrape.xlsx">
+      <ui:ExcelApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+          </ActivityAction.Argument>
+          <ui:ExcelReadRange AddHeaders="True" DataTable="[CompanyDetails]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,58.6666666666667" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="Sheet1">
+            <ui:ExcelReadRange.Range>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:ExcelReadRange.Range>
+          </ui:ExcelReadRange>
+        </ActivityAction>
+      </ui:ExcelApplicationScope.Body>
+    </ui:ExcelApplicationScope>
+    <Sequence DisplayName="Collate Company Details" sap:VirtualizedContainerService.HintSize="911.333333333333,2138.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_58">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Name="i" />
+        <Variable x:TypeArguments="x:String" Name="CompanyDetailsFile" />
+        <Variable x:TypeArguments="x:Boolean" Name="ScreenshotExists" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="790.666666666667,80.6666666666667" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="companyDetails" />
+      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[CompanyDetails]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="790.666666666667,1926" sap2010:WorkflowViewState.IdRef="ForEachRow_8">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="740,1773.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_73">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Assign- Reset Counter" sap:VirtualizedContainerService.HintSize="698,62" sap2010:WorkflowViewState.IdRef="Assign_36">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[i]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap:VirtualizedContainerService.HintSize="698,62" sap2010:WorkflowViewState.IdRef="Assign_32">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[CompanyDetailsFile]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["companyDetails\" + row.Item(0).ToString.split("/"c)(0).ToString + ".docx"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:CopyFile ContinueOnError="{x:Null}" Destination="[CompanyDetailsFile]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="698,162" sap2010:WorkflowViewState.IdRef="CopyFile_9" Overwrite="True" Path="NZSXCompanyDetails-Template.docx" />
+              <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="698,455.333333333333" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_10">
+                <ui:InterruptibleWhile.Body>
+                  <Sequence DisplayName="Insert Company Details" sap:VirtualizedContainerService.HintSize="476,286" sap2010:WorkflowViewState.IdRef="Sequence_77">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[CompanyDetailsFile]" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_15" Replace="[row.Item(i).ToString]" Search="[&quot;&lt;&quot; + CompanyDetails.Columns(i).ToString + &quot;&gt;&quot;]" />
+                    <Assign DisplayName="Assign- Increment Counter" sap:VirtualizedContainerService.HintSize="434,62" sap2010:WorkflowViewState.IdRef="Assign_33">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[i]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[i + 1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </ui:InterruptibleWhile.Body>
+                <ui:InterruptibleWhile.Condition>
+                  <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="i&lt;(CompanyDetails.Columns.Count)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_2" />
+                </ui:InterruptibleWhile.Condition>
+              </ui:InterruptibleWhile>
+              <ui:PathExists DisplayName="Path Exists" Exists="[screenshotExists]" sap:VirtualizedContainerService.HintSize="698,90.6666666666667" sap2010:WorkflowViewState.IdRef="PathExists_5" Path="[&quot;companyScreenshots\&quot; + row.Item(0).ToString.split(&quot;/&quot;c)(0).ToString + &quot;.png&quot;]" PathType="File" />
+              <If Condition="[ScreenshotExists]" sap:VirtualizedContainerService.HintSize="698,649.333333333333" sap2010:WorkflowViewState.IdRef="If_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="552,495.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_72">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[CompanyDetailsFile]" sap:VirtualizedContainerService.HintSize="510,403.333333333333" sap2010:WorkflowViewState.IdRef="WordApplicationScope_15">
+                      <p:WordApplicationScope.Body>
+                        <ActivityAction x:TypeArguments="ui:WordDocument">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,294.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="Delay_11" />
+                            <p:WordReplacePicture DisplayName="Replace Picture" sap:VirtualizedContainerService.HintSize="434,140.666666666667" sap2010:WorkflowViewState.IdRef="WordReplacePicture_5" PictureAltText="WebsiteScreenshot" PicturePath="[&quot;companyScreenshots\&quot; + row.Item(0).ToString.split(&quot;/&quot;c)(0).ToString + &quot;.png&quot;]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </p:WordApplicationScope.Body>
+                    </p:WordApplicationScope>
+                  </Sequence>
+                </If.Then>
+              </If>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ForEachRow>
+    </Sequence>
+    <Sequence DisplayName="Collate Unavailable Details" sap:VirtualizedContainerService.HintSize="911.333333333333,2745.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_46">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Int32" Default="1" Name="j" />
+        <Variable x:TypeArguments="x:String" Name="UnavailableDetailsFile" />
+        <Variable x:TypeArguments="x:String" Name="ResultString" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="869.333333333333,80.6666666666667" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="unavailableDetails" />
+      <ui:InterruptibleWhile DisplayName="While" sap:VirtualizedContainerService.HintSize="869.333333333333,2532.66666666667" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_5">
+        <ui:InterruptibleWhile.Body>
+          <Sequence DisplayName="Check Companies For Each Detail" sap:VirtualizedContainerService.HintSize="832.666666666667,2363.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_39">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="790.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_20">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[UnavailableDetailsFile]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">["unavailableDetails\"+ CompanyDetails.Columns(j).ToString +".docx"]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:CopyFile ContinueOnError="{x:Null}" Destination="[UnavailableDetailsFile]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="790.666666666667,162" sap2010:WorkflowViewState.IdRef="CopyFile_5" Overwrite="True" Path="UnavailableDetails-Template.docx" />
+            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="790.666666666667,22" sap2010:WorkflowViewState.IdRef="Delay_7" />
+            <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[UnavailableDetailsFile]" sap:VirtualizedContainerService.HintSize="790.666666666667,1552.66666666667" sap2010:WorkflowViewState.IdRef="WordApplicationScope_8">
+              <p:WordApplicationScope.Body>
+                <ActivityAction x:TypeArguments="ui:WordDocument">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="756.666666666667,1444" sap2010:WorkflowViewState.IdRef="Sequence_52">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="714.666666666667,22" sap2010:WorkflowViewState.IdRef="Delay_19" />
+                    <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Header Text" sap:VirtualizedContainerService.HintSize="714.666666666667,167.333333333333" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[CompanyDetails.Columns(j).ToString]" ReplaceAll="False" Search="xx" />
+                    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[CompanyDetails]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="714.666666666667,799.333333333333" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                      <ui:ForEachRow.Body>
+                        <ActivityAction x:TypeArguments="sd:DataRow">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="List Companies " sap:VirtualizedContainerService.HintSize="664,650" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If Condition="[row.Item(j).ToString = &quot;unavailable&quot;]" sap:VirtualizedContainerService.HintSize="622,558" sap2010:WorkflowViewState.IdRef="If_5">
+                              <If.Then>
+                                <Sequence sap:VirtualizedContainerService.HintSize="476,407.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" sap:VirtualizedContainerService.HintSize="434,167.333333333333" sap2010:WorkflowViewState.IdRef="WordReplaceText_4" ReplaceAll="False" Search="^p&lt;Company Name&gt;^p">
+                                    <p:WordReplaceText.Replace>
+                                      <InArgument x:TypeArguments="x:String">
+                                        <Literal x:TypeArguments="x:String" Value="" />
+                                      </InArgument>
+                                    </p:WordReplaceText.Replace>
+                                  </p:WordReplaceText>
+                                  <p:WordAppendText DisplayName="Append Company Name" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="WordAppendText_2" Text="[row.Item(&quot;Company name&quot;).ToString]" />
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:ForEachRow.Body>
+                    </ui:ForEachRow>
+                    <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey- Page Break" sap:VirtualizedContainerService.HintSize="714.666666666667,117.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_22" Key="enter" KeyModifiers="Ctrl" SpecialKey="True">
+                      <ui:SendHotkey.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b1894fa8-1efc-4e06-a018-f9bea4cb3532" Selector="&lt;wnd app='winword.exe' cls='OpusApp' title='*' /&gt;&lt;uia automationid='Body' omit:name='' role='edit' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:SendHotkey.Target>
+                    </ui:SendHotkey>
+                    <p:WordReadText DisplayName="Read Document" sap:VirtualizedContainerService.HintSize="714.666666666667,86" sap2010:WorkflowViewState.IdRef="WordReadText_2" Text="[ResultString]" />
+                  </Sequence>
+                </ActivityAction>
+              </p:WordApplicationScope.Body>
+            </p:WordApplicationScope>
+            <If Condition="[ResultString.Contains(&quot;&lt;Company Name&gt;&quot;)]" DisplayName="Delete Document If Empty" sap:VirtualizedContainerService.HintSize="790.666666666667,210.666666666667" sap2010:WorkflowViewState.IdRef="If_6">
+              <If.Then>
+                <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[&quot;unavailableDetails\&quot;+ CompanyDetails.Columns(j).ToString +&quot;.docx&quot;]" />
+              </If.Then>
+            </If>
+            <Assign DisplayName="Assign- Increment Counter" sap:VirtualizedContainerService.HintSize="790.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_16">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[j]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[j + 1]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ui:InterruptibleWhile.Body>
+        <ui:InterruptibleWhile.Condition>
+          <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="j&lt;(CompanyDetails.Columns.Count)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_2" />
+        </ui:InterruptibleWhile.Condition>
+      </ui:InterruptibleWhile>
+    </Sequence>
+    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="911.333333333333,22" sap2010:WorkflowViewState.IdRef="Delay_18" />
+    <Assign sap:VirtualizedContainerService.HintSize="911.333333333333,62" sap2010:WorkflowViewState.IdRef="Assign_47">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[FinalReport]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["NZSXCompanyDetails-" + Now.ToString(“d-MMM-yyyy”) +".docx"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="[FinalReport]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="911.333333333333,162" sap2010:WorkflowViewState.IdRef="CopyFile_12" Overwrite="True" Path="NZSXCompanyReport.docx" />
+    <p:DocumentReplaceText Found="{x:Null}" DisplayName="Replace Text in Document" FilePath="[FinalReport]" sap:VirtualizedContainerService.HintSize="911.333333333333,92" sap2010:WorkflowViewState.IdRef="DocumentReplaceText_19" Replace="[Now.ToString(“d-MMM-yyyy”)]" Search="Insert Date" />
+    <Sequence DisplayName="Merge Documents" sap:VirtualizedContainerService.HintSize="911.333333333333,3578" sap2010:WorkflowViewState.IdRef="Sequence_12">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="s:String[]" Name="CompanyDetailsFilePaths" />
+        <Variable x:TypeArguments="s:String[]" Name="UnavailableDetailsFilePaths" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="m" />
+        <Variable x:TypeArguments="x:Int32" Default="20" Name="nCompaniesPerMerge" />
+        <Variable x:TypeArguments="x:String" Name="concatenatedFilePaths1" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="n" />
+        <Variable x:TypeArguments="x:String" Name="concatenatedFilePaths2" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap:VirtualizedContainerService.HintSize="530.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[CompanyDetailsFilePaths]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(Environment.CurrentDirectory.ToString() + "\companyDetails")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="530.666666666667,62" sap2010:WorkflowViewState.IdRef="Assign_39">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[UnavailableDetailsFilePaths]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(Environment.CurrentDirectory.ToString() + "\unavailableDetails")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[FinalReport]" sap:VirtualizedContainerService.HintSize="530.666666666667,3282" sap2010:WorkflowViewState.IdRef="WordApplicationScope_3">
+        <p:WordApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WordDocument">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="496.666666666667,3173.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_82">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:RepeatNumberOfTimesX DisplayName="Repeat Number of Times" sap:VirtualizedContainerService.HintSize="454.666666666667,408" sap2010:WorkflowViewState.IdRef="RepeatNumberOfTimesX_2" NumberOfTimes="3">
+                <ui:RepeatNumberOfTimesX.Body>
+                  <ActivityAction x:TypeArguments="x:Int32">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentItem" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,247.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_98">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Move insertion point to end of document" sap:VirtualizedContainerService.HintSize="334,155.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_28" Key="pgdn" KeyModifiers="Ctrl" SpecialKey="True">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4d3ddf87-7466-4f5b-a62e-43e887fc23af" InformativeScreenshot="3fe35a1c54f27939a252254b33547b1b" Selector="&lt;wnd app='winword.exe' cls='OpusApp' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:RepeatNumberOfTimesX.Body>
+              </ui:RepeatNumberOfTimesX>
+              <Sequence DisplayName="Combine Company Details Section" sap:VirtualizedContainerService.HintSize="454.666666666667,1168" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InterruptibleWhile DisplayName="Add individual company reports in groups" sap:VirtualizedContainerService.HintSize="412.666666666667,1076" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                  <ui:InterruptibleWhile.Body>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,906.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Enter keyboard shortcut to bring up insert menu" sap:VirtualizedContainerService.HintSize="334,155.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_9" Key="knjf" KeyModifiers="Alt">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="11e342e0-bb31-4c75-bad3-02d1bc0327b6" InformativeScreenshot="ebe32661b148300f30c9f1c22f107ae6" Selector="&lt;wnd app='winword.exe' cls='OpusApp' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="Concatenate sub array of file paths into one string" sap:VirtualizedContainerService.HintSize="334,197.333333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[CompanyDetailsFilePaths.ToList().GetRange(m,Math.Min(nCompaniesPerMerge, CompanyDetailsFilePaths.Length - m))]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="filePath" />
+                            </ActivityAction.Argument>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_7">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[concatenatedFilePaths1]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[concatenatedFilePaths1 + Chr(34) + filePath.ToString() + Chr(34) + " "]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:SetValue AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set file name text to be concatenated file paths" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SetValue_3" Text="[concatenatedFilePaths1]">
+                        <ui:SetValue.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e647d119-caf8-4463-87b4-17a6287766c1" InformativeScreenshot="3d256b273305a72913947254894d0d78" Selector="&lt;wnd app='winword.exe' cls='#32770' title='Insert File' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SetValue.Target>
+                      </ui:SetValue>
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click insert button" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_12" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6efa440e-b60e-4110-a9e2-ed2a1e05ee95" InformativeScreenshot="f1fd514e9ce1bf6ca0f6623faeb26de1" Selector="&lt;wnd app='winword.exe' title='Insert File' /&gt;&lt;wnd ctrlid='1' title='In&amp;amp;sert' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <Assign DisplayName="Assign- Increment to next sub array" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[m]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[m + nCompaniesPerMerge]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:InterruptibleWhile.Body>
+                  <ui:InterruptibleWhile.Condition>
+                    <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="m &lt; CompanyDetailsFilePaths.Length" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_3" />
+                  </ui:InterruptibleWhile.Condition>
+                </ui:InterruptibleWhile>
+              </Sequence>
+              <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="454.666666666667,22" sap2010:WorkflowViewState.IdRef="Delay_13" />
+              <Sequence DisplayName="Combine Unavailable Details" sap:VirtualizedContainerService.HintSize="454.666666666667,1363.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_86">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Move insertion point to end of document" sap:VirtualizedContainerService.HintSize="412.666666666667,155.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_17" Key="end" KeyModifiers="Ctrl" SpecialKey="True">
+                  <ui:SendHotkey.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4d3ddf87-7466-4f5b-a62e-43e887fc23af" InformativeScreenshot="3fe35a1c54f27939a252254b33547b1b" Selector="&lt;wnd app='winword.exe' cls='OpusApp' /&gt;">
+                      <ui:Target.TimeoutMS>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:Target.TimeoutMS>
+                      <ui:Target.WaitForReady>
+                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                      </ui:Target.WaitForReady>
+                    </ui:Target>
+                  </ui:SendHotkey.Target>
+                </ui:SendHotkey>
+                <ui:InterruptibleWhile DisplayName="Add individual company reports in groups" sap:VirtualizedContainerService.HintSize="412.666666666667,1076" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_12">
+                  <ui:InterruptibleWhile.Body>
+                    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,906.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_84">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Enter keyboard shortcut to bring up insert menu" sap:VirtualizedContainerService.HintSize="334,155.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_18" Key="knjf" KeyModifiers="Alt">
+                        <ui:SendHotkey.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="11e342e0-bb31-4c75-bad3-02d1bc0327b6" InformativeScreenshot="ebe32661b148300f30c9f1c22f107ae6" Selector="&lt;wnd app='winword.exe' cls='OpusApp' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SendHotkey.Target>
+                      </ui:SendHotkey>
+                      <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="Concatenate sub array of file paths into one string" sap:VirtualizedContainerService.HintSize="334,197.333333333333" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[UnavailableDetailsFilePaths.ToList().GetRange(n,Math.Min(nCompaniesPerMerge, UnavailableDetailsFilePaths.Length - n))]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:Object">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:Object" Name="filePath" />
+                            </ActivityAction.Argument>
+                            <Assign sap:VirtualizedContainerService.HintSize="262,62" sap2010:WorkflowViewState.IdRef="Assign_40">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[concatenatedFilePaths2]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[concatenatedFilePaths2 + Chr(34) + filePath.ToString() + Chr(34) + " "]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <ui:SetValue AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" DisplayName="Set file name text to be concatenated file paths" sap:VirtualizedContainerService.HintSize="334,134" sap2010:WorkflowViewState.IdRef="SetValue_7" Text="[concatenatedFilePaths2]">
+                        <ui:SetValue.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e647d119-caf8-4463-87b4-17a6287766c1" InformativeScreenshot="6c70156c8ce36e0da199833dcf3edfac" Selector="&lt;wnd app='winword.exe' cls='#32770' title='Insert File' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:SetValue.Target>
+                      </ui:SetValue>
+                      <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click insert button" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_16" KeyModifiers="None" MouseButton="BTN_LEFT">
+                        <ui:Click.CursorPosition>
+                          <ui:CursorPosition Position="Center">
+                            <ui:CursorPosition.OffsetX>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetX>
+                            <ui:CursorPosition.OffsetY>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:CursorPosition.OffsetY>
+                          </ui:CursorPosition>
+                        </ui:Click.CursorPosition>
+                        <ui:Click.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6efa440e-b60e-4110-a9e2-ed2a1e05ee95" InformativeScreenshot="f1fd514e9ce1bf6ca0f6623faeb26de1" Selector="&lt;wnd app='winword.exe' title='Insert File' /&gt;&lt;wnd ctrlid='1' title='In&amp;amp;sert' /&gt;">
+                            <ui:Target.TimeoutMS>
+                              <InArgument x:TypeArguments="x:Int32" />
+                            </ui:Target.TimeoutMS>
+                            <ui:Target.WaitForReady>
+                              <InArgument x:TypeArguments="ui:WaitForReady" />
+                            </ui:Target.WaitForReady>
+                          </ui:Target>
+                        </ui:Click.Target>
+                      </ui:Click>
+                      <Assign DisplayName="Assign- Increment to next sub array" sap:VirtualizedContainerService.HintSize="334,62" sap2010:WorkflowViewState.IdRef="Assign_44">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[n]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[n + nCompaniesPerMerge]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </ui:InterruptibleWhile.Body>
+                  <ui:InterruptibleWhile.Condition>
+                    <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="n &lt;UnavailableDetailsFilePaths.Length" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_5" />
+                  </ui:InterruptibleWhile.Condition>
+                </ui:InterruptibleWhile>
+              </Sequence>
+            </Sequence>
+          </ActivityAction>
+        </p:WordApplicationScope.Body>
+      </p:WordApplicationScope>
+    </Sequence>
+    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="911.333333333333,22" sap2010:WorkflowViewState.IdRef="Delay_20" />
+    <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[FinalReport]" sap:VirtualizedContainerService.HintSize="911.333333333333,800.666666666667" sap2010:WorkflowViewState.IdRef="WordApplicationScope_18">
+      <p:WordApplicationScope.Body>
+        <ActivityAction x:TypeArguments="ui:WordDocument">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="476,692" sap2010:WorkflowViewState.IdRef="Sequence_95">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Update Table Of Contents" sap:VirtualizedContainerService.HintSize="434,155.333333333333" sap2010:WorkflowViewState.IdRef="SendHotkey_24" Key="s" KeyModifiers="Alt">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="11e342e0-bb31-4c75-bad3-02d1bc0327b6" InformativeScreenshot="ebe32661b148300f30c9f1c22f107ae6" Selector="&lt;wnd app='winword.exe' cls='OpusApp' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Okay Button" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Click_19" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6efa440e-b60e-4110-a9e2-ed2a1e05ee95" InformativeScreenshot="88bf2fff49b6902bae402501738a7be5" Selector="&lt;wnd app='winword.exe' cls='OpusApp' title='*' /&gt;&lt;uia cls='NetUIChunk' name='Table of Contents' /&gt;&lt;uia cls='NetUIRibbonButton' name='Update Table...' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click Okay Button" sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Click_20" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="6efa440e-b60e-4110-a9e2-ed2a1e05ee95" InformativeScreenshot="6d35e76902e4933c3c007815bf815465" Selector="&lt;wnd app='winword.exe' cls='bosa_sdm_msword' title='Update Table of Contents' /&gt;&lt;ctrl name='OK' role='push button' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <p:WordExportToPdf DisplayName="Save Document as PDF" FilePath="[&quot;NZSXCompanyDetails-&quot; + Now.ToString(“d-MMM-yyyy”) +&quot;.pdf&quot;]" sap:VirtualizedContainerService.HintSize="434,112.666666666667" sap2010:WorkflowViewState.IdRef="WordExportToPdf_1" />
+          </Sequence>
+        </ActivityAction>
+      </p:WordApplicationScope.Body>
+    </p:WordApplicationScope>
+  </Sequence>
+</Activity>
