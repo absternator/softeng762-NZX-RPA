@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,3494</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2154,3556</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>collate_unavailable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,10 +79,9 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Loops through each company attribute, checking which companies do not have values for these attributes. These are then collated into a single Word document for each attribute, using template documents in a similar fashion to that of &quot;collate_company_details&quot;. If all companies have values for a certain attribute, this attribute's collated document is deleted and thus not included in the final report." DisplayName="Collate Unavailable Details" sap:VirtualizedContainerService.HintSize="875,3429" sap2010:WorkflowViewState.IdRef="Sequence_6">
+  <Sequence sap2010:Annotation.AnnotationText="Loops through each company attribute, checking which companies do not have values for these attributes. These are then collated into a single Word document for each attribute, using template documents in a similar fashion to that of &quot;collate_company_details&quot;. If all companies have values for a certain attribute, this attribute's collated document is deleted and thus not included in the final report." DisplayName="Collate Unavailable Details" sap:VirtualizedContainerService.HintSize="875,3491" sap2010:WorkflowViewState.IdRef="Sequence_6">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="resultString" />
     </Sequence.Variables>
@@ -93,13 +92,13 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="833,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Collating unavailable company details&quot;]" />
-    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="833,3018" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[companiesDT.Columns]">
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="833,3080" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[companiesDT.Columns]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="companyAttribute" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Collate Unavailable Details for this Attribute" sap:VirtualizedContainerService.HintSize="797,2894" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <Sequence DisplayName="Collate Unavailable Details for this Attribute" sap:VirtualizedContainerService.HintSize="797,2956" sap2010:WorkflowViewState.IdRef="Sequence_10">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="unavailableCount" />
               <Variable x:TypeArguments="x:String" Name="unavailableDetailsPath" />
@@ -128,19 +127,19 @@
                 <InArgument x:TypeArguments="x:Int32">0</InArgument>
               </Assign.Value>
             </Assign>
-            <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[unavailableDetailsPath]" sap:VirtualizedContainerService.HintSize="755,1681" sap2010:WorkflowViewState.IdRef="WordApplicationScope_2">
+            <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[unavailableDetailsPath]" sap:VirtualizedContainerService.HintSize="755,1743" sap2010:WorkflowViewState.IdRef="WordApplicationScope_2">
               <p:WordApplicationScope.Body>
                 <ActivityAction x:TypeArguments="ui:WordDocument">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="630,1572" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="630,1634" sap2010:WorkflowViewState.IdRef="Sequence_9">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="588,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
+                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="588,22" sap2010:WorkflowViewState.IdRef="Delay_4" />
                     <p:WordReplaceText Found="{x:Null}" DisplayName="Replace Company Attribute Placeholder Text" sap:VirtualizedContainerService.HintSize="588,162" sap2010:WorkflowViewState.IdRef="WordReplaceText_3" Replace="[companyAttribute.ToString]" ReplaceAll="False" Search="xx" />
                     <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[companiesDT]" DisplayName="Loop over every company, checking if any don't have a value for this attribute" sap:VirtualizedContainerService.HintSize="588,938" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
                       <ui:ForEachRow.Body>
@@ -198,6 +197,7 @@
                       </ui:SendHotkey.Target>
                     </ui:SendHotkey>
                     <p:WordReadText DisplayName="Read Document contents to string" sap:VirtualizedContainerService.HintSize="588,84" sap2010:WorkflowViewState.IdRef="WordReadText_2" Text="[resultString]" />
+                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="588,22" sap2010:WorkflowViewState.IdRef="Delay_5" />
                   </Sequence>
                 </ActivityAction>
               </p:WordApplicationScope.Body>

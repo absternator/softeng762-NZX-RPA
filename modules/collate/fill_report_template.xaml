@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,3454</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2154,3578</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>merge_detail_documents_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -81,10 +81,9 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Fills in the final report template using all the information gathered and collated thus far. Effectively just combines the documents created in the previous work flows into a single, formatted, document. Saves this as both a Word document and a PDF." DisplayName="FIll Final Report Template" sap:VirtualizedContainerService.HintSize="594,3389" sap2010:WorkflowViewState.IdRef="Sequence_8">
+  <Sequence sap2010:Annotation.AnnotationText="Fills in the final report template using all the information gathered and collated thus far. Effectively just combines the documents created in the previous work flows into a single, formatted, document. Saves this as both a Word document and a PDF." DisplayName="FIll Final Report Template" sap:VirtualizedContainerService.HintSize="594,3513" sap2010:WorkflowViewState.IdRef="Sequence_8">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="CompanyDetailsFilePaths" />
       <Variable x:TypeArguments="s:String[]" Name="UnavailableDetailsFilePaths" />
@@ -123,18 +122,19 @@
         <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(configDict("UnavailableDetailsFolder"))]</InArgument>
       </Assign.Value>
     </Assign>
-    <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[finalReportPath]" sap:VirtualizedContainerService.HintSize="552,2480" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
+    <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[finalReportPath]" sap:VirtualizedContainerService.HintSize="552,2604" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
       <p:WordApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WordDocument">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WordDocument" Name="WordDocumentScope" />
           </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="518,2371" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence sap:VirtualizedContainerService.HintSize="518,2495" sap2010:WorkflowViewState.IdRef="Sequence_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
             <ui:RepeatNumberOfTimesX DisplayName="Repeat Number of Times" sap:VirtualizedContainerService.HintSize="476,399" sap2010:WorkflowViewState.IdRef="RepeatNumberOfTimesX_1" NumberOfTimes="3" StartAt="1">
               <ui:RepeatNumberOfTimesX.Body>
                 <ActivityAction x:TypeArguments="x:Int32">
@@ -166,15 +166,11 @@
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="476,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Inserting available company details&quot;]" />
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Insert Word Documents workflow" sap:VirtualizedContainerService.HintSize="476,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="modules\util\Insert Word Documents.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="s:String[]" x:Key="DocumentFilePaths">
-                  <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="companyDetailsFilePaths" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="DocumentGroupSize">
-                  <Literal x:TypeArguments="x:Int32" Value="20" />
-                </InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="DocumentFilePaths">[companyDetailsFilePaths]</InArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="DocumentGroupSize">20</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
             <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Move insertion point to end of document" sap:VirtualizedContainerService.HintSize="476,152" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="end" KeyModifiers="Ctrl" SpecialKey="True">
               <ui:SendHotkey.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4d3ddf87-7466-4f5b-a62e-43e887fc23af" InformativeScreenshot="3fe35a1c54f27939a252254b33547b1b" Selector="&lt;wnd app='winword.exe' cls='OpusApp' /&gt;">
@@ -190,15 +186,12 @@
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="476,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Inserting unavailable company information&quot;]" />
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke Insert Word Documents workflow" sap:VirtualizedContainerService.HintSize="476,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="modules\util\Insert Word Documents.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="s:String[]" x:Key="DocumentFilePaths">
-                  <mva:VisualBasicValue x:TypeArguments="s:String[]" ExpressionText="unavailableDetailsFilePaths" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="DocumentGroupSize">
-                  <Literal x:TypeArguments="x:Int32" Value="20" />
-                </InArgument>
+                <InArgument x:TypeArguments="s:String[]" x:Key="DocumentFilePaths">[unavailableDetailsFilePaths]</InArgument>
+                <InArgument x:TypeArguments="x:Int32" x:Key="DocumentGroupSize">20</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="476,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Report creation complete! Saving to .docx and PDF&quot;]" />
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="476,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
             <Sequence sap2010:Annotation.AnnotationText="Previous insertions have made table of contents page numbers incorrect, so we update them." DisplayName="Update table of contents" sap:VirtualizedContainerService.HintSize="476,758" sap2010:WorkflowViewState.IdRef="Sequence_9">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">

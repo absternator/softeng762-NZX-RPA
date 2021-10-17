@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,2288</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2154,2350</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>collate_company_details_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -72,10 +72,9 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Loops through company's details in the DataTable, and fills in a copy of a Word template document with these details for each. These documents are merged into a final report in the &quot;fill_report_template&quot; workflow." DisplayName="Collate Company Details" sap:VirtualizedContainerService.HintSize="664,2223" sap2010:WorkflowViewState.IdRef="Sequence_6">
+  <Sequence sap2010:Annotation.AnnotationText="Loops through company's details in the DataTable, and fills in a copy of a Word template document with these details for each. These documents are merged into a final report in the &quot;fill_report_template&quot; workflow." DisplayName="Collate Company Details" sap:VirtualizedContainerService.HintSize="664,2285" sap2010:WorkflowViewState.IdRef="Sequence_6">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Name="i" />
       <Variable x:TypeArguments="x:String" Name="companyDetailsPath" />
@@ -89,13 +88,13 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="622,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Collating available company details&quot;]" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[companiesDT]" DisplayName="For each company's details row" sap:VirtualizedContainerService.HintSize="622,1827" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[companiesDT]" DisplayName="For each company's details row" sap:VirtualizedContainerService.HintSize="622,1889" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="companyDetailsRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Fill in a copy of the Word template Document" sap:VirtualizedContainerService.HintSize="588,1654" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence DisplayName="Fill in a copy of the Word template Document" sap:VirtualizedContainerService.HintSize="588,1716" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -143,7 +142,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:PathExists>
-            <If Condition="[screenshotExists]" DisplayName="If screenshot file exists" sap:VirtualizedContainerService.HintSize="546,515" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[screenshotExists]" DisplayName="If screenshot file exists" sap:VirtualizedContainerService.HintSize="546,577" sap2010:WorkflowViewState.IdRef="If_1">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -151,12 +150,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <If.Then>
-                <Sequence DisplayName="Add screenshot to company details Word Document" sap:VirtualizedContainerService.HintSize="510,338" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence DisplayName="Add screenshot to company details Word Document" sap:VirtualizedContainerService.HintSize="510,400" sap2010:WorkflowViewState.IdRef="Sequence_4">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
+                  <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="468,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
                   <p:WordApplicationScope DisplayName="Word Application Scope" FilePath="[companyDetailsPath]" sap:VirtualizedContainerService.HintSize="468,246" sap2010:WorkflowViewState.IdRef="WordApplicationScope_1">
                     <p:WordApplicationScope.Body>
                       <ActivityAction x:TypeArguments="ui:WordDocument">
