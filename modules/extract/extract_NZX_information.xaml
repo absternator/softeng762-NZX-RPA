@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,3697</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1028,3136</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>extracting_from_NZX_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="72">
@@ -87,9 +87,10 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Extracts NZX company information from the NZSX company listings page. Stores the retrieved information in a DataTable for future use in the later stages of execution. Also saves a copy to an Excel spreadsheet." DisplayName="Extract NZX Information" sap:VirtualizedContainerService.HintSize="554,3632" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Extracts NZX company information from the NZSX company listings page. Stores the retrieved information in a DataTable for future use in the later stages of execution. Also saves a copy to an Excel spreadsheet." DisplayName="Extract NZX Information" sap:VirtualizedContainerService.HintSize="554,2925" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="companiesDT" />
       <Variable x:TypeArguments="ui:Browser" Name="browserInstance" />
@@ -100,13 +101,13 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open browser with the NZX markets page" sap:VirtualizedContainerService.HintSize="512,2438" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" UiBrowser="[BrowserInstance]" Url="[ConfigDict(&quot;NZXHomeURL&quot;) + &quot;/markets/NZSX&quot;]">
+    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open browser with the NZX markets page" sap:VirtualizedContainerService.HintSize="512,1864" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" UiBrowser="[BrowserInstance]" Url="[ConfigDict(&quot;NZXHomeURL&quot;) + &quot;/markets/NZSX&quot;]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence sap2010:Annotation.AnnotationText="Creates the combined company details DataTable that is ultimately stored on disk and used by the other modules of the bot." DisplayName="Create company details DataTable" sap:VirtualizedContainerService.HintSize="478,2337" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence sap2010:Annotation.AnnotationText="Creates the combined company details DataTable that is ultimately stored on disk and used by the other modules of the bot." DisplayName="Create company details DataTable" sap:VirtualizedContainerService.HintSize="478,1763" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -115,21 +116,49 @@
             </sap:WorkflowViewStateService.ViewState>
             <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="436,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Extracting company info from NZSX&quot;]" />
             <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
-            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[CompaniesDT]" DisplayName="Extract company name and NZX URL from NZSX listing table" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Company name' attr='text' name2='company url' attr2='href'&gt;&lt;webctrl tag='tr'/&gt;&lt;webctrl tag='td' idx='2'/&gt;&lt;webctrl tag='span' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="436,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="[Integer.Parse(ConfigDict(&quot;NumCompanies&quot;).ToString)]" SimulateClick="True">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,364" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,286" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:SendHotkey DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" sap2010:Annotation.AnnotationText="We fullscreen the window as this means the top of the browser is not visible, giving a tidier screenshot." ClickBeforeTyping="True" DisplayName="Fullscreen browser window (for screenshots)" sap:VirtualizedContainerService.HintSize="334,194" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="f11" KeyModifiers="None" SpecialKey="True">
+                    <ui:SendHotkey.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="955c7b29-06e3-43b0-b01b-69ce1d9e94e4" InformativeScreenshot="e44aaa0dbd28ff656ce9fcb75e2927de" Selector="&lt;wnd app='chrome.exe' /&gt;">
+                        <ui:Target.TimeoutMS>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:Target.TimeoutMS>
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:SendHotkey.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:SendHotkey>
+                </Sequence>
+              </ui:CommentOut.Body>
+            </ui:CommentOut>
+            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[companiesDT]" DisplayName="Extract company name and NZX URL from NZSX listing table" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' /&gt;&lt;/row&gt;&lt;column exact='1' name='code' attr='text'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Company name' attr='text' name2='company url' attr2='href'&gt;&lt;webctrl tag='tr' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="436,106" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="[Integer.Parse(ConfigDict(&quot;NumCompanies&quot;).ToString)]" SimulateClick="True">
               <ui:ExtractData.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="20119be7-67ea-478a-950d-8bb49eda1c19" InformativeScreenshot="1479de9c4177c70da8db2effb994d7dc" Selector="&lt;webctrl parentid='instruments-table' tag='TBODY' /&gt;" WaitForReady="COMPLETE">
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c3e6a243-e369-4fc7-b008-28dd728a1f62" InformativeScreenshot="831cec97fb055b8493db375519584d16" Selector="&lt;webctrl parentid='instruments-table' tag='TBODY' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
                     <InArgument x:TypeArguments="x:Int32" />
                   </ui:Target.TimeoutMS>
                 </ui:Target>
               </ui:ExtractData.Target>
             </ui:ExtractData>
-            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Chief Executive Officer" DataTable="[companiesDT]" DisplayName="Add Column for CEO" sap:VirtualizedContainerService.HintSize="436,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" />
-            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Media Contact" DataTable="[companiesDT]" DisplayName="Add Column for Media Contact" sap:VirtualizedContainerService.HintSize="436,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
-            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Auditor" DataTable="[companiesDT]" DisplayName="Add Column for Auditor" sap:VirtualizedContainerService.HintSize="436,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
-            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Solicitor" DataTable="[companiesDT]" DisplayName="Add Column for Solicitor" sap:VirtualizedContainerService.HintSize="436,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
-            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Chief Financial Officer" DataTable="[companiesDT]" DisplayName="Add Column for CFO" sap:VirtualizedContainerService.HintSize="436,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" />
-            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Website" DataTable="[companiesDT]" DisplayName="Add Column for Website URL" sap:VirtualizedContainerService.HintSize="436,185" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_6" />
+            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Chief Executive Officer" DataTable="[companiesDT]" DisplayName="Add Column for CEO" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" />
+            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Media Contact" DataTable="[companiesDT]" DisplayName="Add Column for Media Contact" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
+            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Auditor" DataTable="[companiesDT]" DisplayName="Add Column for Auditor" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_3" />
+            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Solicitor" DataTable="[companiesDT]" DisplayName="Add Column for Solicitor" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_4" />
+            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Chief Financial Officer" DataTable="[companiesDT]" DisplayName="Add Column for CFO" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_5" />
+            <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Website" DataTable="[companiesDT]" DisplayName="Add Column for Website URL" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_6" />
             <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="This loops through each company and adds their respective details to the company details DataTable." DataTable="[companiesDT]" DisplayName="Extract details for each company" sap:VirtualizedContainerService.HintSize="436,383" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
@@ -161,7 +190,7 @@
         </ActivityAction>
       </ui:OpenBrowser.Body>
     </ui:OpenBrowser>
-    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" sap2010:Annotation.AnnotationText="The NZX company details page URL is no longer needed, so we remove this information from the DataTable." ColumnName="company url" DataTable="[CompaniesDT]" DisplayName="Remove NZX Company URL Column" sap:VirtualizedContainerService.HintSize="512,242" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1">
+    <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" sap2010:Annotation.AnnotationText="The NZX company details page URL is no longer needed, so we remove this information from the DataTable." ColumnName="company url" DataTable="[CompaniesDT]" DisplayName="Remove NZX Company URL Column" sap:VirtualizedContainerService.HintSize="512,109" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>

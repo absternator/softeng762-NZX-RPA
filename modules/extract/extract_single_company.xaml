@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2154,5099</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1028,4445</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>extract_single_company_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -77,9 +77,10 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Extracts the details for a single company, using the corresponding webpage on the NZX website. Updates the previously constructed DataTable using these extracted values, modifying it in place. Also takes a screenshot of the company's main website, if one exists." DisplayName="Extract Details for Single Company" sap:VirtualizedContainerService.HintSize="844,5034" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence sap2010:Annotation.AnnotationText="Extracts the details for a single company, using the corresponding webpage on the NZX website. Updates the previously constructed DataTable using these extracted values, modifying it in place. Also takes a screenshot of the company's main website, if one exists." DisplayName="Extract Details for Single Company" sap:VirtualizedContainerService.HintSize="844,4380" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="mediaContact" />
       <Variable x:TypeArguments="x:String" Name="websiteURL" />
@@ -98,13 +99,13 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[browserInstance]" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="802,4900" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[browserInstance]" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="802,4246" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="768,4792" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence sap:VirtualizedContainerService.HintSize="768,4138" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -219,29 +220,29 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ExtractData>
-            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[bottomDT]" DisplayName="Extract solictor name from scraped table" sap:VirtualizedContainerService.HintSize="726,291" sap2010:WorkflowViewState.IdRef="LookupDataTable_3" LookupColumnIndex="[0]" LookupValue="Solicitor" TargetColumnIndex="[1]">
+            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[bottomDT]" DisplayName="Extract solictor name from scraped table" sap:VirtualizedContainerService.HintSize="726,22" sap2010:WorkflowViewState.IdRef="LookupDataTable_3" LookupColumnIndex="[0]" LookupValue="Solicitor" TargetColumnIndex="[1]">
               <ui:LookupDataTable.CellValue>
                 <OutArgument x:TypeArguments="x:String">[solicitorName]</OutArgument>
               </ui:LookupDataTable.CellValue>
             </ui:LookupDataTable>
-            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[bottomDT]" DisplayName="Extract auditor name from scraped table" sap:VirtualizedContainerService.HintSize="726,291" sap2010:WorkflowViewState.IdRef="LookupDataTable_4" LookupColumnIndex="[0]" LookupValue="Auditor" TargetColumnIndex="[1]">
+            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[bottomDT]" DisplayName="Extract auditor name from scraped table" sap:VirtualizedContainerService.HintSize="726,22" sap2010:WorkflowViewState.IdRef="LookupDataTable_4" LookupColumnIndex="[0]" LookupValue="Auditor" TargetColumnIndex="[1]">
               <ui:LookupDataTable.CellValue>
                 <OutArgument x:TypeArguments="x:String">[auditorName]</OutArgument>
               </ui:LookupDataTable.CellValue>
             </ui:LookupDataTable>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Structure of company details table on NZX webpages are not consistent across companies, thus a brute force check is required with some leniency for format (checking using String.Contains instead of a direct comparison)." DataTable="[topDT]" DisplayName="Loops through each row in the DataTable, checking if any entry corresponds to CEO or CFO" sap:VirtualizedContainerService.HintSize="726,833" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Structure of company details table on NZX webpages are not consistent across companies, thus a brute force check is required with some leniency for format (checking using String.Contains instead of a direct comparison)." DataTable="[topDT]" DisplayName="Loops through each row in the DataTable, checking if any entry corresponds to CEO or CFO" sap:VirtualizedContainerService.HintSize="726,775" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Assign CEO and CFO for this company if these details are available" sap:VirtualizedContainerService.HintSize="526,604" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Assign CEO and CFO for this company if these details are available" sap:VirtualizedContainerService.HintSize="526,546" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Executive Officer&quot;)]" DisplayName="If CEO is available then assign" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Executive Officer&quot;)]" DisplayName="If CEO is available then assign" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_4">
                       <If.Then>
                         <Assign DisplayName="Assign CEO" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                           <Assign.To>
@@ -253,7 +254,7 @@
                         </Assign>
                       </If.Then>
                     </If>
-                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Financial Officer&quot;)]" DisplayName="If CFO is available then assign" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Financial Officer&quot;)]" DisplayName="If CFO is available then assign" sap:VirtualizedContainerService.HintSize="484,207" sap2010:WorkflowViewState.IdRef="If_5">
                       <If.Then>
                         <Assign DisplayName="Assign CFO" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
                           <Assign.To>
@@ -328,24 +329,24 @@
                 </scg:List>
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
-            <Sequence DisplayName="Log information that was not found" sap:VirtualizedContainerService.HintSize="726,482" sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <Sequence DisplayName="Log information that was not found" sap:VirtualizedContainerService.HintSize="726,453" sap2010:WorkflowViewState.IdRef="Sequence_9">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="520,390" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[companyDetailsRow.Table.Columns]">
+              <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="615,361" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[companyDetailsRow.Table.Columns]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:Object">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="x:Object" Name="companyAttribute" />
                     </ActivityAction.Argument>
-                    <If Condition="[String.IsNullOrEmpty(companyDetailsRow(companyAttribute.ToString).ToString)]" sap:VirtualizedContainerService.HintSize="484,267" sap2010:WorkflowViewState.IdRef="If_14">
+                    <If Condition="[String.Equals(companyDetailsRow.item(companyAttribute.ToString).ToString, &quot;unavailable&quot;)]" sap:VirtualizedContainerService.HintSize="579,238" sap2010:WorkflowViewState.IdRef="If_15">
                       <If.Then>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[&quot;   - Could not find '&quot; + companyAttribute.ToString + &quot;' for &quot; + companyDetailsRow.item(&quot;company name&quot;).ToString]" />
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Warn" Message="[&quot;   - Could not find '&quot; + companyAttribute.ToString + &quot;' for &quot; + companyDetailsRow.item(&quot;company name&quot;).ToString]" />
                       </If.Then>
                       <If.Else>
-                        <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                        <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_18">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -358,7 +359,7 @@
                 </ui:ForEach.Body>
               </ui:ForEach>
             </Sequence>
-            <If Condition="[companyDetailsRow.item(&quot;Website&quot;).ToString &lt;&gt; &quot;unavailable&quot;]" DisplayName="If website available then save screenshot into folder" sap:VirtualizedContainerService.HintSize="726,986" sap2010:WorkflowViewState.IdRef="If_13">
+            <If Condition="[companyDetailsRow.item(&quot;Website&quot;).ToString &lt;&gt; &quot;unavailable&quot;]" DisplayName="If website available then save screenshot into folder" sap:VirtualizedContainerService.HintSize="726,957" sap2010:WorkflowViewState.IdRef="If_13">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="480,810" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
