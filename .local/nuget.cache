@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "z0HSuQ4erWh9pmutbJdcspQ6FMzlE+4QCWV5ygI+fIQP86h/GmTsPvBCXLPWC12fyP2oVOnrqd3gPUrOoWRj2g==",
+  "dgSpecHash": "Y9snidtnSefODlPQxzurE1nJoywpxzZ3Oc2I1uik0yLqHLBtF1c6hdFe6KCEJVCMcXsVt6i05g0c+OkZ1W8D9Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\jack\\Desktop\\folders\\uni\\Year 4\\Sem 2\\SOFTENG 762\\group assignment\\rpa bot\\.local\\",
   "expectedPackageFiles": [
-    "C:\\Users\\jack\\.nuget\\packages\\762-rpa-library\\1.0.2\\762-rpa-library.1.0.2.nupkg.sha512",
     "C:\\Users\\jack\\.nuget\\packages\\closedxml\\0.87.1\\closedxml.0.87.1.nupkg.sha512",
     "C:\\Users\\jack\\.nuget\\packages\\csvhelper\\16.0.0\\csvhelper.16.0.0.nupkg.sha512",
     "C:\\Users\\jack\\.nuget\\packages\\documentformat.openxml\\2.5.0\\documentformat.openxml.2.5.0.nupkg.sha512",

@@ -2,22 +2,6 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.1": {
-      "762-RPA-Library/1.0.2": {
-        "type": "package",
-        "dependencies": {
-          "UiPath.Excel.Activities": "2.11.3",
-          "UiPath.Mail.Activities": "1.12.1",
-          "UiPath.System.Activities": "21.10.0",
-          "UiPath.UIAutomation.Activities": "21.10.1"
-        },
-        "compile": {
-          "lib/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/762-RPA-Library.dll": {},
-          "lib/net45/762-RPA-Library_Expressions_30913391.dll": {}
-        }
-      },
       "ClosedXML/0.87.1": {
         "type": "package",
         "dependencies": {
@@ -2941,22 +2925,6 @@
       }
     },
     ".NETFramework,Version=v4.6.1/win10-x64": {
-      "762-RPA-Library/1.0.2": {
-        "type": "package",
-        "dependencies": {
-          "UiPath.Excel.Activities": "2.11.3",
-          "UiPath.Mail.Activities": "1.12.1",
-          "UiPath.System.Activities": "21.10.0",
-          "UiPath.UIAutomation.Activities": "21.10.1"
-        },
-        "compile": {
-          "lib/net45/_._": {}
-        },
-        "runtime": {
-          "lib/net45/762-RPA-Library.dll": {},
-          "lib/net45/762-RPA-Library_Expressions_30913391.dll": {}
-        }
-      },
       "ClosedXML/0.87.1": {
         "type": "package",
         "dependencies": {
@@ -5796,28 +5764,6 @@
     }
   },
   "libraries": {
-    "762-RPA-Library/1.0.2": {
-      "sha512": "mmYE+ixLm9dTzZ236e12sYJ20q66Xkf1AY1Ycth4kRIH/ga3nhviVzx7GEecLl9KBj2PpPncGtUZyaO5jDbXUQ==",
-      "type": "package",
-      "path": "762-rpa-library/1.0.2",
-      "files": [
-        ".nupkg.metadata",
-        "762-rpa-library.1.0.2.nupkg.sha512",
-        "762-rpa-library.nuspec",
-        "lib/net45/.settings/Design/settings-afad0842.json",
-        "lib/net45/.settings/Release/settings-1a5b880a.json",
-        "lib/net45/.settings/Release/settings-5190454b.json",
-        "lib/net45/.settings/Release/settings-590bb27b.json",
-        "lib/net45/.settings/Release/settings-9e9290da.json",
-        "lib/net45/.settings/Release/settings-a1b2dac1.json",
-        "lib/net45/.settings/Release/settings-afad0842.json",
-        "lib/net45/762-RPA-Library.dll",
-        "lib/net45/762-RPA-Library_Expressions_30913391.dll",
-        "lib/net45/Insert Word Documents.xaml",
-        "lib/net45/bindings.json",
-        "lib/net45/project.json"
-      ]
-    },
     "ClosedXML/0.87.1": {
       "sha512": "2LC0T8bu2G2kt34C4Ig87uZfrRO4MwMVI54e2To7m3DvwAs2Z2Ir86WQuUoW8Txo1uNGSfmu3DpfpQhSX0bIww==",
       "type": "package",
@@ -12334,7 +12280,6 @@
   "projectFileDependencyGroups": {
     "": [],
     ".NETFramework,Version=v4.6.1": [
-      "762-RPA-Library >= 1.0.2 <= 1.0.2",
       "UiPath.Excel.Activities >= 2.11.3 <= 2.11.3",
       "UiPath.Mail.Activities >= 1.12.1 <= 1.12.1",
       "UiPath.System.Activities >= 21.10.0 <= 21.10.0",
@@ -12356,11 +12301,6 @@
     "frameworks": {
       "net461": {
         "dependencies": {
-          "762-RPA-Library": {
-            "include": "Runtime",
-            "target": "Package",
-            "version": "[1.0.2, 1.0.2]"
-          },
           "UiPath.Excel.Activities": {
             "include": "Runtime",
             "target": "Package",

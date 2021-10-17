@@ -3,7 +3,6 @@
   "description": "This is a project for SOFTENG762 RPA. The project entiails extracting infromation about companies on the NZX stock exchange.",
   "main": "Main.xaml",
   "dependencies": {
-    "762-RPA-Library": "[1.0.2]",
     "UiPath.Excel.Activities": "[2.11.3]",
     "UiPath.Mail.Activities": "[1.12.1]",
     "UiPath.System.Activities": "[21.10.0]",

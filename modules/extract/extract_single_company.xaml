@@ -1,13 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="extract_single_company" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="extract_single_company" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="BrowserInstance" Type="InArgument(ui:Browser)" />
-    <x:Property Name="CompanyDetailsRow" Type="InArgument(sd:DataRow)" />
-    <x:Property Name="NZXHomeUrl" Type="InArgument(x:String)" />
+    <x:Property Name="companyDetailsRow" Type="InArgument(sd:DataRow)" />
+    <x:Property Name="browserInstance" Type="InArgument(ui:Browser)" />
+    <x:Property Name="configDict" Type="InArgument(scg:Dictionary(x:String, x:String))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1770,3945</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2154,5099</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>extract_single_company_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -74,41 +74,44 @@
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Word</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Extensions.DependencyModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract Details for Single Company" sap:VirtualizedContainerService.HintSize="844,3880" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence sap2010:Annotation.AnnotationText="Extracts the details for a single company, using the corresponding webpage on the NZX website. Updates the previously constructed DataTable using these extracted values, modifying it in place. Also takes a screenshot of the company's main website, if one exists." DisplayName="Extract Details for Single Company" sap:VirtualizedContainerService.HintSize="844,5034" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Name="MediaContact" />
-      <Variable x:TypeArguments="x:String" Name="WebsiteURL" />
+      <Variable x:TypeArguments="x:String" Name="mediaContact" />
+      <Variable x:TypeArguments="x:String" Name="websiteURL" />
       <Variable x:TypeArguments="x:String" Name="CEOName" />
-      <Variable x:TypeArguments="sd:DataTable" Name="TopDt" />
-      <Variable x:TypeArguments="sd:DataTable" Name="BottomDT" />
-      <Variable x:TypeArguments="x:String" Name="StrDT" />
-      <Variable x:TypeArguments="x:String" Name="SolicitorName" />
-      <Variable x:TypeArguments="x:String" Name="AuditorName" />
+      <Variable x:TypeArguments="sd:DataTable" Name="topDT" />
+      <Variable x:TypeArguments="sd:DataTable" Name="bottomDT" />
+      <Variable x:TypeArguments="x:String" Name="strDT" />
+      <Variable x:TypeArguments="x:String" Name="solicitorName" />
+      <Variable x:TypeArguments="x:String" Name="auditorName" />
       <Variable x:TypeArguments="x:String" Name="CFOName" />
-      <Variable x:TypeArguments="ui:Image" Name="Screenshot" />
+      <Variable x:TypeArguments="ui:Image" Name="screenshot" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[BrowserInstance]" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="802,3788" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
+    <ui:BrowserScope BrowserType="{x:Null}" SearchScope="{x:Null}" Selector="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" Browser="[browserInstance]" DisplayName="Attach Browser" sap:VirtualizedContainerService.HintSize="802,4900" sap2010:WorkflowViewState.IdRef="BrowserScope_1">
       <ui:BrowserScope.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence sap:VirtualizedContainerService.HintSize="768,3680" sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <Sequence sap:VirtualizedContainerService.HintSize="768,4792" sap2010:WorkflowViewState.IdRef="Sequence_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:NavigateTo Browser="[BrowserInstance]" DisplayName="Navigate To Company info on NZX website" sap:VirtualizedContainerService.HintSize="726,59" sap2010:WorkflowViewState.IdRef="NavigateTo_3" Url="[CompanyDetailsRow.item(&quot;company url&quot;).ToString]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="726,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot; - Extracting information for &quot; + companyDetailsRow.item(&quot;company name&quot;).ToString]" />
+            <ui:NavigateTo Browser="[browserInstance]" DisplayName="Navigate To Company info on NZX website" sap:VirtualizedContainerService.HintSize="726,59" sap2010:WorkflowViewState.IdRef="NavigateTo_3" Url="[companyDetailsRow.item(&quot;company url&quot;).ToString]" />
             <ui:AnchorBase AnchorPosition="Left" ContinueOnError="True" DisplayName="Get media contact" sap:VirtualizedContainerService.HintSize="726,198" sap2010:WorkflowViewState.IdRef="AnchorBase_3">
               <ui:AnchorBase.Action>
                 <ActivityAction x:TypeArguments="ui:Anchor">
@@ -155,7 +158,7 @@
                   </ActivityAction.Argument>
                   <ui:GetAttribute Attribute="href" ContinueOnError="True" DisplayName="Get Attribute 'A'" sap:VirtualizedContainerService.HintSize="334,202" sap2010:WorkflowViewState.IdRef="GetAttribute_2">
                     <ui:GetAttribute.Result>
-                      <OutArgument x:TypeArguments="x:String">[WebsiteURL]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String">[websiteURL]</OutArgument>
                     </ui:GetAttribute.Result>
                     <ui:GetAttribute.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7c255dce-c782-47e7-9acf-16709eecfa4a" InformativeScreenshot="2e2fb7f8d3620e0caf83e1d1fb2d3c70" Selector="&lt;webctrl tag='A' /&gt;">
@@ -188,7 +191,7 @@
                 </ui:WaitImageAppear>
               </ui:AnchorBase.AnchorProvider>
             </ui:AnchorBase>
-            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[TopDT]" DisplayName="Extract Structured Data 'top table with ceo...'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest' /&gt;" sap:VirtualizedContainerService.HintSize="726,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100" SimulateClick="True">
+            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="Extracts structured data from the table nearer the top of the page, containing CFO and CEO information, among other things." ContinueOnError="True" DataTable="[topDT]" DisplayName="Extract structured data 'Top Details Table.'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest' /&gt;" sap:VirtualizedContainerService.HintSize="726,163" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100" SimulateClick="True">
               <ui:ExtractData.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="3fe5b0d5-56b0-4da7-876d-152bcb9964a6" InformativeScreenshot="56d120781c7df8b38094ff6f1f3180ba" Selector="&lt;webctrl css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;table' idx='1' tag='TABLE' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
@@ -196,8 +199,13 @@
                   </ui:Target.TimeoutMS>
                 </ui:Target>
               </ui:ExtractData.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:ExtractData>
-            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[BottomDT]" DisplayName="Extract Structured Data 'bottom table with auditor..'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest' /&gt;" sap:VirtualizedContainerService.HintSize="726,106" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="100" SimulateClick="True">
+            <ui:ExtractData DelayBetweenPagesMS="{x:Null}" NextLinkSelector="{x:Null}" sap2010:Annotation.AnnotationText="Extracts structured data from the table nearer the bottom instead, including information about Solicitors and Auditors, etc." ContinueOnError="True" DataTable="[bottomDT]" DisplayName="Extract structured data 'Bottom Details Table.'" ExtractMetadata="&lt;extract-table get_columns_name='1' get_empty_columns='1' columns_name_source='Longest' /&gt;" sap:VirtualizedContainerService.HintSize="726,163" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="100" SimulateClick="True">
               <ui:ExtractData.Target>
                 <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="eed12233-29e4-42c6-83be-16cb2bc8edca" InformativeScreenshot="0d48a4270ceddd580439ea8980e5d86f" Selector="&lt;webctrl css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;table' idx='2' tag='TABLE' /&gt;" WaitForReady="COMPLETE">
                   <ui:Target.TimeoutMS>
@@ -205,32 +213,37 @@
                   </ui:Target.TimeoutMS>
                 </ui:Target>
               </ui:ExtractData.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
             </ui:ExtractData>
-            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[BottomDT]" DisplayName="Extract Solictor Name from Scraped Table" sap:VirtualizedContainerService.HintSize="726,291" sap2010:WorkflowViewState.IdRef="LookupDataTable_3" LookupColumnIndex="[0]" LookupValue="Solicitor" TargetColumnIndex="[1]">
+            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[bottomDT]" DisplayName="Extract solictor name from scraped table" sap:VirtualizedContainerService.HintSize="726,291" sap2010:WorkflowViewState.IdRef="LookupDataTable_3" LookupColumnIndex="[0]" LookupValue="Solicitor" TargetColumnIndex="[1]">
               <ui:LookupDataTable.CellValue>
-                <OutArgument x:TypeArguments="x:String">[SolicitorName]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[solicitorName]</OutArgument>
               </ui:LookupDataTable.CellValue>
             </ui:LookupDataTable>
-            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[BottomDT]" DisplayName="Extract Auditor Name from Scraped Table" sap:VirtualizedContainerService.HintSize="726,291" sap2010:WorkflowViewState.IdRef="LookupDataTable_4" LookupColumnIndex="[0]" LookupValue="Auditor" TargetColumnIndex="[1]">
+            <ui:LookupDataTable LookupColumnName="{x:Null}" LookupDataColumn="{x:Null}" RowIndex="{x:Null}" TargetColumnName="{x:Null}" TargetDataColumn="{x:Null}" DataTable="[bottomDT]" DisplayName="Extract auditor name from scraped table" sap:VirtualizedContainerService.HintSize="726,291" sap2010:WorkflowViewState.IdRef="LookupDataTable_4" LookupColumnIndex="[0]" LookupValue="Auditor" TargetColumnIndex="[1]">
               <ui:LookupDataTable.CellValue>
-                <OutArgument x:TypeArguments="x:String">[AuditorName]</OutArgument>
+                <OutArgument x:TypeArguments="x:String">[auditorName]</OutArgument>
               </ui:LookupDataTable.CellValue>
             </ui:LookupDataTable>
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="checks if ceo or cfo exisits on extrated table and assigns to variable if true" DataTable="[TopDT]" DisplayName="loop through each row of top DT containing CEO &amp; CFO" sap:VirtualizedContainerService.HintSize="726,807" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Structure of company details table on NZX webpages are not consistent across companies, thus a brute force check is required with some leniency for format (checking using String.Contains instead of a direct comparison)." DataTable="[topDT]" DisplayName="Loops through each row in the DataTable, checking if any entry corresponds to CEO or CFO" sap:VirtualizedContainerService.HintSize="726,833" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,604" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Assign CEO and CFO for this company if these details are available" sap:VirtualizedContainerService.HintSize="526,604" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Executive Officer&quot;)]" DisplayName="If ceo then assign" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_4">
+                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Executive Officer&quot;)]" DisplayName="If CEO is available then assign" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_4">
                       <If.Then>
-                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign DisplayName="Assign CEO" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[CEOName]</OutArgument>
                           </Assign.To>
@@ -240,9 +253,9 @@
                         </Assign>
                       </If.Then>
                     </If>
-                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Financial Officer&quot;)]" DisplayName="If row is cfo then assign" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_5">
+                    <If Condition="[Row.Item(1).ToString.Contains(&quot;Chief Financial Officer&quot;)]" DisplayName="If CFO is available then assign" sap:VirtualizedContainerService.HintSize="484,236" sap2010:WorkflowViewState.IdRef="If_5">
                       <If.Then>
-                        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                        <Assign DisplayName="Assign CFO" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_4">
                           <Assign.To>
                             <OutArgument x:TypeArguments="x:String">[CFOName]</OutArgument>
                           </Assign.To>
@@ -261,7 +274,7 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <ui:MultipleAssign DisplayName="Assign excel data" sap:VirtualizedContainerService.HintSize="726,255" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+            <ui:MultipleAssign DisplayName="Assign DataTable values using extracted details" sap:VirtualizedContainerService.HintSize="726,255" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
               <ui:MultipleAssign.AssignOperations>
                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
@@ -277,7 +290,7 @@
                       <OutArgument x:TypeArguments="x:Object">[companyDetailsRow.item("Website")]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:Object">[if(String.IsNullOrEmpty(WebsiteURL),"unavailable",WebsiteURL)]</InArgument>
+                      <InArgument x:TypeArguments="x:Object">[if(String.IsNullOrEmpty(websiteURL),"unavailable",websiteURL)]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
@@ -285,7 +298,7 @@
                       <OutArgument x:TypeArguments="x:Object">[companyDetailsRow.item("Solicitor")]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:Object">[if(String.IsNullOrEmpty(SolicitorName),"unavailable",SolicitorName)]</InArgument>
+                      <InArgument x:TypeArguments="x:Object">[if(String.IsNullOrEmpty(solicitorName),"unavailable",solicitorName)]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_10">
@@ -293,7 +306,7 @@
                       <OutArgument x:TypeArguments="x:Object">[companyDetailsRow.Item("Auditor")]</OutArgument>
                     </ui:AssignOperation.To>
                     <ui:AssignOperation.Value>
-                      <InArgument x:TypeArguments="x:Object">[if(String.IsNullOrEmpty(AuditorName),"unavailable",AuditorName)]</InArgument>
+                      <InArgument x:TypeArguments="x:Object">[if(String.IsNullOrEmpty(auditorName),"unavailable",auditorName)]</InArgument>
                     </ui:AssignOperation.Value>
                   </ui:AssignOperation>
                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_11">
@@ -315,36 +328,101 @@
                 </scg:List>
               </ui:MultipleAssign.AssignOperations>
             </ui:MultipleAssign>
-            <If Condition="[companyDetailsRow.item(&quot;Website&quot;).ToString &lt;&gt; &quot;unavailable&quot;]" DisplayName="If website available then save screenshot into folder" sap:VirtualizedContainerService.HintSize="726,667" sap2010:WorkflowViewState.IdRef="If_6">
+            <Sequence DisplayName="Log information that was not found" sap:VirtualizedContainerService.HintSize="726,482" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="520,390" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[companyDetailsRow.Table.Columns]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="companyAttribute" />
+                    </ActivityAction.Argument>
+                    <If Condition="[String.IsNullOrEmpty(companyDetailsRow(companyAttribute.ToString).ToString)]" sap:VirtualizedContainerService.HintSize="484,267" sap2010:WorkflowViewState.IdRef="If_14">
+                      <If.Then>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Warn" Message="[&quot;   - Could not find '&quot; + companyAttribute.ToString + &quot;' for &quot; + companyDetailsRow.item(&quot;company name&quot;).ToString]" />
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="200,83" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+            </Sequence>
+            <If Condition="[companyDetailsRow.item(&quot;Website&quot;).ToString &lt;&gt; &quot;unavailable&quot;]" DisplayName="If website available then save screenshot into folder" sap:VirtualizedContainerService.HintSize="726,986" sap2010:WorkflowViewState.IdRef="If_13">
               <If.Then>
-                <Sequence sap:VirtualizedContainerService.HintSize="376,491" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence sap:VirtualizedContainerService.HintSize="480,810" sap2010:WorkflowViewState.IdRef="Sequence_12">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="NavigateTo_4" Url="[companyDetailsRow.item(&quot;Website&quot;).ToString]">
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:NavigateTo>
-                  <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
-                  <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take screenshot of website" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="TakeScreenshot_2" Screenshot="[screenshot]">
-                    <ui:TakeScreenshot.Target>
-                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="15ae0ee6-efb8-4a56-b29c-315c14c7d6b9" InformativeScreenshot="eb7f2d8973b74f09f88ee3097e8a0030" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' /&gt;&lt;wnd cls='Intermediate D3D Window' /&gt;">
-                        <ui:Target.TimeoutMS>
-                          <InArgument x:TypeArguments="x:Int32" />
-                        </ui:Target.TimeoutMS>
-                        <ui:Target.WaitForReady>
-                          <InArgument x:TypeArguments="ui:WaitForReady" />
-                        </ui:Target.WaitForReady>
-                      </ui:Target>
-                    </ui:TakeScreenshot.Target>
-                  </ui:TakeScreenshot>
-                  <ui:SaveImage DisplayName="Save Image" FileName="[&quot;companyScreenshots\&quot; + companyDetailsRow.item(0).ToString + &quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="SaveImage_2" Image="[screenshot]" />
+                  <TryCatch DisplayName="Try to screenshot website, logging that an error occurred if this fails" sap:VirtualizedContainerService.HintSize="438,718" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                    <TryCatch.Try>
+                      <Sequence DisplayName="Take screenshot of company website and save file" sap:VirtualizedContainerService.HintSize="376,491" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:NavigateTo Browser="{x:Null}" DisplayName="Navigate To" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="NavigateTo_5" Url="[companyDetailsRow.item(&quot;Website&quot;).ToString]">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:NavigateTo>
+                        <Delay DisplayName="Wait for page to load" Duration="00:00:05" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                        <ui:TakeScreenshot WaitBefore="{x:Null}" DisplayName="Take screenshot of website" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="TakeScreenshot_3" Screenshot="[screenshot]">
+                          <ui:TakeScreenshot.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="15ae0ee6-efb8-4a56-b29c-315c14c7d6b9" InformativeScreenshot="09f08399108909b9771607bb3abde1e2" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' idx='*' /&gt;&lt;wnd aaname='Horizontal' cls='Chrome_RenderWidgetHostHWND' title='Chrome Legacy Window' /&gt;">
+                              <ui:Target.TimeoutMS>
+                                <InArgument x:TypeArguments="x:Int32" />
+                              </ui:Target.TimeoutMS>
+                              <ui:Target.WaitForReady>
+                                <InArgument x:TypeArguments="ui:WaitForReady" />
+                              </ui:Target.WaitForReady>
+                            </ui:Target>
+                          </ui:TakeScreenshot.Target>
+                        </ui:TakeScreenshot>
+                        <ui:SaveImage DisplayName="Save Image" FileName="[configDict(&quot;ScreenshotsFolder&quot;) + companyDetailsRow.item(0).ToString + &quot;.png&quot;]" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="SaveImage_3" Image="[screenshot]" />
+                      </Sequence>
+                    </TryCatch.Try>
+                    <TryCatch.Catches>
+                      <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ActivityAction x:TypeArguments="s:Exception">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                          </ActivityAction.Argument>
+                          <Sequence sap:VirtualizedContainerService.HintSize="376,314" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Error" Message="[&quot;Error saving screenshot of website for &quot; + companyDetailsRow.item(&quot;company name&quot;).ToString]" />
+                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[exception.StackTrace]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </Catch>
+                    </TryCatch.Catches>
+                  </TryCatch>
                 </Sequence>
               </If.Then>
             </If>
