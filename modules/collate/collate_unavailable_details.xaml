@@ -118,7 +118,7 @@
               </Assign.Value>
             </Assign>
             <ui:CopyFile ContinueOnError="{x:Null}" Destination="[unavailableDetailsPath]" DisplayName="Copy Unavailable Details Template Document" sap:VirtualizedContainerService.HintSize="755,157" sap2010:WorkflowViewState.IdRef="CopyFile_2" Overwrite="True" Path="[configDict(&quot;UnavailableDetailsTemplatePath&quot;)]" />
-            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="755,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+            <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="755,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
             <Assign DisplayName="Keep track of how many companies do not have this information" sap:VirtualizedContainerService.HintSize="755,60" sap2010:WorkflowViewState.IdRef="Assign_5">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Int32">[unavailableCount]</OutArgument>
@@ -197,7 +197,7 @@
                       </ui:SendHotkey.Target>
                     </ui:SendHotkey>
                     <p:WordReadText DisplayName="Read Document contents to string" sap:VirtualizedContainerService.HintSize="588,84" sap2010:WorkflowViewState.IdRef="WordReadText_2" Text="[resultString]" />
-                    <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="588,22" sap2010:WorkflowViewState.IdRef="Delay_5" />
+                    <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="588,22" sap2010:WorkflowViewState.IdRef="Delay_5" />
                   </Sequence>
                 </ActivityAction>
               </p:WordApplicationScope.Body>
